@@ -1,20 +1,28 @@
-# fly.toml app configuration file generated for bombo on 2026-06-10T18:05:57Z
-#
-# See https://fly.io/docs/reference/configuration/ for information about how to use this file.
-#
-
 app = 'bombo'
 primary_region = 'iad'
 
 [build]
 
-[http_service]
+[[services]]
   internal_port = 8080
-  force_https = true
-  auto_stop_machines = 'stop'
-  auto_start_machines = true
-  min_machines_running = 0
+  protocol = "tcp"
   processes = ['app']
+
+  [[services.ports]]
+    port = 80
+    handlers = ["http"]
+
+  [[services.ports]]
+    port = 443
+    handlers = ["tls", "http"]
+
+[[services]]
+  internal_port = 6080
+  protocol = "tcp"
+
+  [[services.ports]]
+    port = 6080
+    handlers = ["http"]
 
 [[vm]]
   memory = '1gb'
