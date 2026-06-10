@@ -70,7 +70,7 @@ def index():
         <!-- noVNC iframe — live view of the server's Chrome -->
         <iframe
             id="browser-frame"
-            src="http://localhost:6080/vnc.html?autoconnect=true&resize=scale&show_dot=true"
+            src="https://bombo.fly.dev:6080/vnc.html?autoconnect=true&resize=scale"
         ></iframe>
 
         <div id="links-panel">
